@@ -20,7 +20,7 @@ while True:
     for submission in subreddit.get_hot(limit=thing_limit):
         op_text = submission.selftext.lower()
         has_joke = any(string in op_text for string in jokeWords)
-        if submission.comments:
+        if submission.comments and submission.id not in already_done:
             for i, elem in enumerate(submission.comments):
                 comment = submission.comments[i]
                 author = str(comment.author)
