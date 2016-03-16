@@ -12,6 +12,7 @@ thing_limit = 10
 botname = ["BotWhoJokes"]
 jokeWords = ["joke"]
 already_done = []
+have_i_posted = False
 
 while True:
     
@@ -19,12 +20,18 @@ while True:
     for submission in subreddit.get_hot(limit=thing_limit):
         op_text = submission.selftext.lower()
         has_joke = any(string in op_text for string in jokeWords)
-        comment = submission.comments[0]
-        author = comment.author
-        have_i_posted = any(string in author for string in botname)
+        if submission.comments:
+            for i, elem in enumerate(submission.comments):
+                comment = submission.comments[i]
+                author = str(comment.author)
+                pprint.pprint(author)
+                have_i_posted = any(string in author for string in botname)
+                if have_i_posted:
+                    already_done.append(submission.id)
         
-        if submission.id not in already_done and has_joke and not have_i_posted:
+        if submission.id not in already_done and has_joke:
             submission.add_comment("Reading you clear!")
             already_done.append(submission.id)
     
     
+        have_i_posted = False
