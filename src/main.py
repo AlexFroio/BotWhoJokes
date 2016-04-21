@@ -10,7 +10,7 @@ o = OAuth2Util.OAuth2Util(r, server_mode=True)
 r.login("BotWhoJokes", "RobotHumor42????", disable_warning=True)
 o.refresh(force = True)
 thing_limit = 10
-botname = ["BotWhoJokes"]
+botname = ["BotWhoJokessss"]
 CallWords = ["joke"]
 fgj = open("goodjokes.txt", "w+")
 fbj = open("badjokes.txt", "w+")
