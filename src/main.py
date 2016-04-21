@@ -10,7 +10,7 @@ o = OAuth2Util.OAuth2Util(r, server_mode=True)
 r.login("BotWhoJokes", "RobotHumor42????", disable_warning=True)
 o.refresh(force = True)
 thing_limit = 10
-botname = ["BotWhoJokessss"]
+botname = ["BotWhoJokes"]
 CallWords = ["joke"]
 fgj = open("goodjokes.txt", "w+")
 fbj = open("badjokes.txt", "w+")
@@ -20,7 +20,7 @@ BadJoke = [line.rstrip('\n') for line in fbj]
 fbj.close()
 fo = open("nouns.txt")
 JokeWords = [line.rstrip('\n') for line in fo]
-phrases = [" is as likely as ", " would totally destroy ", " can't really stand up to ", " is building a wall to keep out "]
+phrases = [" is as likely as ", " would totally destroy ", " can't really stand up to ", " is building a wall to keep out ", " tastes just like a cup full of "]
 fo.close()
 JokeRand1 = 0
 JokeRand2 = 0
@@ -74,12 +74,12 @@ while True:
             JCount = JCount + 1
         if have_i_posted:
             comment = submission.comments[mycomment]
-            if comment.ups >= 10:
-                GoodJoke.append(comment.selftext.strip("\n \n Was the joke I told good? Upvote me. Bad? Downvote me. More info at https://github.com/AlexFroio/BotWhoJokes") + "\n")
+            if comment.ups >= 3:
+                GoodJoke.append(comment.body.strip("\n \n Was the joke I told good? Upvote me. Bad? Downvote me. More info at https://github.com/AlexFroio/BotWhoJokes") + "\n")
             if comment.ups == 0:
-                BadJoke.append(comment.selftext.strip("\n \n Was the joke I told good? Upvote me. Bad? Downvote me. More info at https://github.com/AlexFroio/BotWhoJokes") + "\n")
-                if comment.selftext in GoodJoke:
-                    GoodJoke.remove(comment.selftext + "\n")
+                BadJoke.append(comment.body.strip("\n \n Was the joke I told good? Upvote me. Bad? Downvote me. More info at https://github.com/AlexFroio/BotWhoJokes") + "\n")
+                if comment.body in GoodJoke:
+                    GoodJoke.remove(comment.body + "\n")
             fgj = open("goodjokes.txt", "w")
             for line in GoodJoke:
                 fgj.write(line)
